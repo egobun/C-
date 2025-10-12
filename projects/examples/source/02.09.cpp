@@ -4,25 +4,51 @@
 
 ////////////////////////////////////////////////////
 
-int main()
-{
-//	[[maybe_unused]] auto x1; // error
 
-//	[[maybe_unused]] auto x2{}; // error
+#include <iostream>
+#include <numeric>
 
-    [[maybe_unused]] auto x3(3);
 
-	[[maybe_unused]] auto x4 = 4;
 
-    [[maybe_unused]] auto x5 { 5 };
-
-//	[[maybe_unused]] auto x6 = { 6 }; // bad
-
-//  ------------------------------------------------
-
-    [[maybe_unused]] auto y1 = 1u;
-
-//	[[maybe_unused]] auto y2 = 2, y3 = 3.0; // error
+int gcd_recursive(int a, int b) {
+    if (b == 0) return a;
+    return gcd_recursive(b, a % b);
 }
+
+int gcd_iterative(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int lcm_via_gcd(int a, int b) {
+    if (a == 0 || b == 0) return 0;
+    int gcd_val = gcd_iterative(a, b);
+    return (a / gcd_val) * b;
+}
+
+int main() {
+    int x, y;
+    std::cout << "cin x  y: ";
+    std::cin >> x >> y;
+
+    int gcd_rec = gcd_recursive(x, y);
+    int gcd_it = gcd_iterative(x, y);
+    int lcm_calc = lcm_via_gcd(x, y);
+
+    std::cout << "recursive gcd: " << gcd_rec << "\n";
+    std::cout << "iterative gcd: " << gcd_it << "\n";
+    std::cout << "lcm: " << lcm_calc << "\n";
+
+    std::cout << "std::gcd: " << std::gcd(x, y) << "\n";
+    std::cout << "std::lcm: " << std::lcm(x, y) << "\n";
+
+    return 0;
+}
+
+
 
 ////////////////////////////////////////////////////
