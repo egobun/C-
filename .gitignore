@@ -1,3 +1,6 @@
 .vscode
 libraries/
 output/
+*.out
+projects/examples/source/build/
+
