@@ -29,11 +29,11 @@ private :
 
 class Client_v1 : public         Entity {};
 
-class Client_v2 : public virtual Entity {};
+class Client_v2 : public virtual Entity {};//!!!virtual нужен чтобы вместо вилки получить ромбик
 
 class Server_v1 : public         Entity {};
 
-class Server_v2 : public virtual Entity {};
+class Server_v2 : public virtual Entity {};//!!!virtual нужен чтобы вместо вилки получить ромбик
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -49,7 +49,7 @@ int main()
 
 //  -------------------------------------------------------
 
-//	router_v1.test_v1(); // error
+//	router_v1.test_v1(); // error //!!!не понятно функцию какого экземпляра entity необходимо вызывать
 
 	router_v1.test_v2();
 

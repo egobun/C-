@@ -27,7 +27,7 @@ private :
 
 //////////////////////////////////////////////////////////////
 
-class Client : public Entity
+class Client : public Entity //!!!открытое наследование
 {
 public :
 
@@ -46,7 +46,7 @@ public :
 
 //  -------------------------------------------
 
-	using Entity::test_v3;
+	using Entity::test_v3;//!!!перемещаем из protected в publc чтобы была возможность вызывать функция в main(важно что using написан именно в public)
 
 private :
 

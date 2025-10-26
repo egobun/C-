@@ -22,8 +22,8 @@ protected :
 };
 
 /////////////////////////////////////////
-
-class Server_v1 : private Entity 
+//!!!множественное наследование может потянуть ряд проблем
+class Server_v1 : private Entity //!!!закрытое наследование(все из entity попадает в private Server_v1)
 {
 public :
 
@@ -35,6 +35,8 @@ public :
 	}
 };
 
+//!!!наследование protected вообще не используется
+
 /////////////////////////////////////////
 
 class Server_v2 
@@ -43,7 +45,7 @@ public :
 
 	void test() const
 	{
-		m_entity.test_v1();
+		m_entity.test_v1(); //!!!тут можем вызывать только публичные методы m_entity
 
 	//	m_entity.test_v2(); // error
 	}

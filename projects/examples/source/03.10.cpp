@@ -3,7 +3,7 @@
 #include <iostream>
 
 ////////////////////////////////////////////////////////////////////
-
+//!!!passkey не может разграничть доступ к полям родительского класса, только к методам
 class Key_v1 { private : friend class Client; Key_v1() = default; };
 
 class Key_v2 { private :                      Key_v2() = default; };
