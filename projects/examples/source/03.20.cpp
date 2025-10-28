@@ -41,6 +41,7 @@ public :
 
 	Client_v1 * make_entity_v1() const override 
 	{ 
+		//!!!различия в сигнатурах допустимы так как возвращаемое значение = указатели на два класса в одной иерархии
 		std::cout << "Client_v2::make_entity_v1\n";
 
 		return new Client_v1;

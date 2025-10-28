@@ -25,18 +25,20 @@ class Server : public Entity {};
 
 int main()
 {
+	//!!!upcasting
 	Entity * entity = new Client;
 
 //  -----------------------------------------------------------------------------------
-
+	//!!!downcasting-заведомо плохой принцип проектирования
 	assert( static_cast < Client * > (entity) != 0);
 
 //	assert( static_cast < Server * > (entity) != 0); // error
-
+//!!!static_cast не выполняет проверку = небезопасно
 //  -----------------------------------------------------------------------------------
 
 	assert(dynamic_cast < Client * > (entity) != 0); // support : compiler-explorer.com
-
+	//!!!dinamic_cast выполняет проверку = безопасно
+	//только полиморфный объект - с таблицами виртуальных функций 
 	assert(dynamic_cast < Server * > (entity) == 0);
 
 //  -----------------------------------------------------------------------------------
