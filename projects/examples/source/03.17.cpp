@@ -49,29 +49,47 @@ public :
 
 /////////////////////////////////////////////
 
+class Server : public Entity
+{
+public :
+
+    void test_v1() const override 
+	{ 
+		std::cout << "Server::test_v1\n";
+		
+		Entity::test_v1();
+	}
+};
+
+/////////////////////////////////////////////
+
 int main()
 {
     std::vector < Entity * > entities;
 
-//  ----------------------------------------
-
-//  entities.push_back(new Entity); // error
+//  ----------------------------------
 
     entities.push_back(new Client);
 
-//  ----------------------------------------
+    entities.push_back(new Server);
+
+//  ----------------------------------
 
     for (auto entity : entities)
     {
         entity->test_v1();
     }
 
-//  ----------------------------------------
+//  ----------------------------------
 
     for (auto entity : entities)
     {
         delete entity;
     }
+
+//  ----------------------------------
+
+//	Entity entity; // error
 }
 
 /////////////////////////////////////////////
