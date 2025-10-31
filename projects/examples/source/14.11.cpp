@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <concepts>
 #include <functional>
 #include <future>
 #include <iterator>
@@ -12,7 +11,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-template < std::ranges::view V, typename T > auto reduce(V view, T sum) -> T
+template < typename T > auto reduce(std::ranges::view auto view, T sum) -> T
 {
 	auto begin = std::begin(view), end = std::end(view);
 
@@ -24,11 +23,11 @@ template < std::ranges::view V, typename T > auto reduce(V view, T sum) -> T
 
 		sum += reduce(std::ranges::subrange(std::end(range), end), T());
 
-		return future.get() + sum;
+		return sum + future.get();
 	}
 	else
 	{
-		return std::ranges::fold_left(view, sum, std::plus());
+		return sum + *std::ranges::fold_left_first(view, std::plus());
 	}
 }
 

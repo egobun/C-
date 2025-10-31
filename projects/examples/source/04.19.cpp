@@ -6,16 +6,25 @@
 
 /////////////////////////////////////////////////////////////
 
-constexpr auto make_integer() 
-{ 
-	return !std::is_constant_evaluated() ? 1 : 2;
+constexpr auto test_v1(int x) { return x; }
+
+consteval auto test_v2(int x) { return x; }
+
+/////////////////////////////////////////////////////////////
+
+consteval auto factorial_v1(int x) -> int 
+{
+	return x > 1 ? x * factorial_v1(x - 1) : 1;
 }
 
 /////////////////////////////////////////////////////////////
 
-constexpr auto test_v1(int x) { return x; }
+consteval auto factorial_v2(int x)
+{
+    for (auto i = x - 1; i > 1; x *= i, --i);
 
-consteval auto test_v2(int x) { return x; }
+    return x;
+}
 
 /////////////////////////////////////////////////////////////
 
@@ -32,9 +41,13 @@ constinit auto g_x = 1;
 
 int main()
 {
-              auto x = make_integer();
-    
-    constexpr auto y = make_integer();
+              auto x = 1;
+
+    constexpr auto y = 2; // support : compiler-explorer.com
+
+//  ---------------------------------------------------------
+
+//  ++y; // error
 
 //  ---------------------------------------------------------
 
@@ -59,6 +72,12 @@ int main()
 //  [[maybe_unused]]           auto z7 = test_v2(x); // error
 
 	[[maybe_unused]]           auto z8 = test_v2(y);
+
+//  ---------------------------------------------------------
+
+    static_assert(factorial_v1(5) == 120);
+
+    static_assert(factorial_v2(5) == 120);
 
 //  ---------------------------------------------------------
 

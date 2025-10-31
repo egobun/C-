@@ -104,7 +104,7 @@ int main()
     auto entity_v3_2 = entity_v3_1->make_shared();
 
 //  -------------------------------------------------------
-    
+
     assert(entity_v3_1.use_count() == 2);
 
     assert(entity_v3_2.use_count() == 2);

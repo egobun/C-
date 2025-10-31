@@ -7,7 +7,7 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-template < typename L, typename I > void erase(L & list, I iterator)
+void erase(auto & list, auto iterator)
 {
     auto previous = list.before_begin();
 
@@ -27,6 +27,18 @@ int main()
 
 //  -----------------------------------------------------------------------
 
+    static_assert
+    (
+        std::is_same_v 
+        < 
+            decltype(list)::iterator::iterator_category,
+            
+            std::forward_iterator_tag 
+        > 
+    );
+
+//  -----------------------------------------------------------------------
+
 //  assert(std::size(list) == 5); // error
 
 //  -----------------------------------------------------------------------
@@ -40,18 +52,6 @@ int main()
 //  -----------------------------------------------------------------------
 
 //  assert(list.at(0) == 1); // error
-
-//  -----------------------------------------------------------------------
-
-    static_assert
-    (
-        std::is_same_v 
-        < 
-            std::forward_list < int > ::iterator::iterator_category,
-            
-            std::forward_iterator_tag 
-        > 
-    );
 }
 
 ///////////////////////////////////////////////////////////////////////////

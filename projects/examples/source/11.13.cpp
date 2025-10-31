@@ -2,8 +2,8 @@
 
 #include <any>
 #include <functional>
-#include <iostream>
 #include <iterator>
+#include <print>
 #include <string>
 #include <typeindex>
 #include <unordered_map>
@@ -22,7 +22,7 @@ public :
 
     void operator()(std::any const & any) const
     {
-        std::cout << "Visitor::operator() : any = " << std::any_cast < T > (any) << '\n';
+        std::print("Visitor::operator() : any = {}\n", std::any_cast < T > (any));
     }
 };
 
@@ -32,20 +32,24 @@ int main()
 {
     using alias_1 = int;
 
-    using alias_2 = std::string;
+    using alias_2 = double;
+
+    using alias_3 = std::string;
 
 //  -------------------------------------------------------------------------------------------
 
     std::unordered_map < std::type_index, std::function < void(std::any const &) > > visitors =
     {
         std::make_pair(std::type_index(typeid(alias_1)), Visitor < alias_1 > ()),
+
+        std::make_pair(std::type_index(typeid(alias_2)), Visitor < alias_2 > ()),
         
-        std::make_pair(std::type_index(typeid(alias_2)), Visitor < alias_2 > ())
+        std::make_pair(std::type_index(typeid(alias_3)), Visitor < alias_3 > ())
     };
 
 //  -------------------------------------------------------------------------------------------
 
-    for (auto const & any : std::vector < std::any > ({ 1, "aaaaa"s })) 
+    for (auto const & any : std::vector < std::any > ({ 1, 2.0, "aaaaa"s })) 
     {
         std::type_index type_index(any.type());
 

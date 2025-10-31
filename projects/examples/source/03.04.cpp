@@ -1,9 +1,9 @@
-//////////////////////////////////
+/////////////////////////////////
 
 #include <cassert>
 #include <iostream>
 
-//////////////////////////////////
+/////////////////////////////////
 
 // class Entity
 // {
@@ -108,6 +108,7 @@ private:
     }
 };
 
+
 class Attorney1
 {
 public:
@@ -180,5 +181,4 @@ int main()
     tester1.test(entity);
     tester2.test(entity);
 
-    
 }

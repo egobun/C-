@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include <print>
 #include <string>
 
 //////////////////////////////////////////////////////////////////////////
@@ -28,12 +29,12 @@ int main()
 		auto object = local["factorial"](100);
 
 	//  ------------------------------------------------------------------
-			
+
 		auto x = boost::python::extract < std::string > (object)();
 
 	//  ------------------------------------------------------------------
 
-        std::cout << "main : x = " << x << '\n';
+        std::print("main : x = {}\n", x);
 	}
 	catch (boost::python::error_already_set const &)
 	{

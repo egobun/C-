@@ -2,6 +2,7 @@
 
 #include <exception>
 #include <iostream>
+#include <print>
 #include <stdexcept>
 #include <vector>
 
@@ -29,7 +30,7 @@ private :
 
 [[noreturn]] void test_v1()
 {
-	std::cout << "test_v1\n";
+	std::print("test_v1\n");
 
 //	auto x = new auto(1); // error
 
@@ -41,14 +42,14 @@ private :
 
 //	delete x; // error
 	
-	std::cout << "test_v1\n";
+	std::print("test_v1\n");
 }
 
 //////////////////////////////////////////////////////////////
 
 void test_v2()
 {
-	std::cout << "test_v2\n";
+	std::print("test_v2\n");
 
 	try
 	{
@@ -63,14 +64,14 @@ void test_v2()
 		throw;
 	}
 
-	std::cout << "test_v2\n";
+	std::print("test_v2\n");
 }
 
 //////////////////////////////////////////////////////////////
 
 void test_v3()
 {
-	std::cout << "test_v3\n";
+	std::print("test_v3\n");
 
 	try
 	{
@@ -83,7 +84,7 @@ void test_v3()
 		throw std::runtime_error("error");
 	}
 
-	std::cout << "test_v3\n";
+	std::print("test_v3\n");
 }
 
 //////////////////////////////////////////////////////////////

@@ -2,13 +2,14 @@
 
 #include <iostream>
 #include <new>
+#include <print>
 
 /////////////////////////////////////////////////////////////////////////
 
 void test() 
 { 
-    std::cout << "test\n";
-    
+    std::print("test\n");
+
     std::set_new_handler(nullptr); 
 }
 
