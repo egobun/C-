@@ -61,6 +61,11 @@ class Figure
 {
 public:
 
+	virtual ~Figure()
+	{
+		std::cout << "Figure::~Figure()" << std::endl;
+	}
+	
 	virtual double perimeter() const = 0;
 
 	virtual double square() const = 0;
@@ -81,6 +86,11 @@ public:
 
 	Circle(double r) : r(r) {}
 
+	~Circle()
+	{
+		std::cout << "Circle::~Circle()" << std::endl;
+	}
+
 	double perimeter() const override
 	{
 		return (2 * std::numbers::pi * r);
@@ -91,7 +101,8 @@ public:
 		return (std::numbers::pi * r * r);
 	}
 
-	std::string get_name() const {
+	std::string get_name() const override
+	{
 		return name;
 	}
 
@@ -108,6 +119,11 @@ public:
 
 	Square(double a) : a(a) {}
 
+	~Square()
+	{
+		std::cout << "Square::~Square()" << std::endl;
+	}
+
 	double square() const override
 	{
 		return a * a;
@@ -118,7 +134,8 @@ public:
 		return 4*a;
 	}
 
-	std::string get_name() const {
+	std::string get_name() const override
+	{
 		return name;
 	}
 
@@ -129,11 +146,15 @@ private:
 
 };
 
-class Triangle : public Figure 
+class Triangle final : public Figure 
 {
 public:
 
 	Triangle (double a, double b, double c) : a(a), b(b), c(c) {}
+
+	~Triangle(){
+		std::cout << "Triangle::~Triangle()" << std::endl;
+	}
 
 	double square() const override{
 		double p = 0.5 * (a + b + c);
@@ -145,7 +166,8 @@ public:
 		return a + b + c;
 	}
 
-	std::string get_name() const {
+	std::string get_name() const override
+	{
 		return name;
 	}
 
@@ -173,8 +195,14 @@ int main(){
 	figures.push_back(square);
 	figures.push_back(triangle);
 
-	for(auto fig : figures){
+	for(auto fig : figures)
+	{
 		std::cout << fig->get_name() <<" S = " << fig->square() << "; P = " << fig->perimeter() << ";" <<std::endl;
+	}
+
+	for(auto fig : figures)
+	{
+		delete fig;
 	}
 
 	return 0;
