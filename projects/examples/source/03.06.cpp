@@ -33,7 +33,7 @@ public :
 
 //	static        auto s_x = 1; // error
 
-	static inline auto s_y = 2;
+	static inline auto s_y = 2; // !!!можно определить в определении класса, не принадлежит не одному из экземляров класса, является общей для всез экземпляров
 
 private :
 
