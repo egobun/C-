@@ -20,6 +20,8 @@ public :
         if (m_x > other.m_x) { return std::weak_ordering::greater; }
 
         return std::weak_ordering::equivalent;
+        //!!!equivalent-объекты эквивалентны, но не равны (тут к примеру m_y могут быть не равны)
+        // но все равно будет equivalent
     }
 
 private :

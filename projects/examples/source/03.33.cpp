@@ -8,6 +8,8 @@
 
 #include <boost/rational.hpp>
 
+//!!! можно не реализовывать класс Rational я взять готовый из boost
+
 //////////////////////////////////////////////////////////
 
 auto equal(double x, double y, double epsilon = 1e-6)
