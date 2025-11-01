@@ -182,15 +182,21 @@ public :
 	// 	return static_cast<double>(lhs) <=> static_cast<double>(rhs);
 	// }
 
+	// friend auto operator<=>(Rational const & lhs, Rational const & rhs)
+	// {
+	// 	auto comparison = (lhs.m_num <=> rhs.m_num);
+		
+	// 	if(comparison == std::strong_ordering::equal)
+	// 	{
+	// 		return lhs.m_den <=> rhs.m_den;
+	// 	}
+	// 	return comparison;
+	// }
+
 	friend auto operator<=>(Rational const & lhs, Rational const & rhs)
 	{
-		auto comparison = (lhs.m_num <=> rhs.m_num);
-		
-		if(comparison != std::strong_ordering::equal)
-		{
-			return lhs.m_den <=> rhs.m_den;
-		}
-		return comparison;
+		auto lcm = std::lcm(lhs.m_den,rhs.m_den);
+		return (lhs.m_num * lcm / lhs.m_den) <=> (rhs.m_num * lcm / rhs.m_den);	
 	}
 
 	friend auto operator== (Rational const & lhs, Rational const & rhs)
@@ -211,7 +217,7 @@ auto equal(double x, double y, double epsilon = 1e-6)
 
 int main()
 {
-	Rational x = 1, y(2, 1);
+	Rational x = 1, y(2, 1), u = 2;
 	//!!! x = 1 не будет работать если конструктор Rational который принимает одно или два числа explicit
 //  -----------------------------------------------------------------------
 
@@ -306,9 +312,9 @@ int main()
 
 	assert((x != y) == 0);
 
-	assert((x <=> y) > 0);
+	// assert((x <=> y) > 0);
 	assert((x <=> y) == 0);
-	assert((x <=> y) < 0);
+	// assert((x <=> y) < 0);
 
 //  -----------------------------------------------------------------------
 
@@ -319,7 +325,7 @@ int main()
 
 	std::stringstream stream_3("3/2");
 
-	std::stringstream stream_4("5/2");
+	std::stringstream stream_4("5/3");
 
 	//!!! два потока и для записи и для чтение одного типа, хотя наши перегруженные операторы ожидают istream и ostream
 	//
@@ -329,11 +335,19 @@ int main()
 
 	stream_2 << x;
 
+	stream_3 >> y;
+
+	stream_4 >> u;
+
 //  -----------------------------------------------------------------------
 
 	assert(stream_2.str() == stream_1.str());
 	assert(stream_3.str() < stream_4.str());
 	assert(stream_4.str() > stream_3.str());
+
+
+	assert(y < u);
+	assert(u > x);
 	
 	//!!! stringstream позволяет писать тесты на assert для проверки того что ввелось и вывелось
 }
