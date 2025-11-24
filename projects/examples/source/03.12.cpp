@@ -43,7 +43,7 @@ public :
 /////////////////////////////////////////
 
 
-class Server_v2 
+class Client_v2 
 {
 public :
 
@@ -63,31 +63,31 @@ private :
 
 int main()
 {
-	Server_v1 server_v1;
+	Client_v1 client_v1;
 
 //  -----------------------------
 
-//	server_v1.test_v1(); // error
+//	client_v1.test_v1(); // error
 
-//	server_v1.test_v2(); // error
-
-//  -----------------------------
-
-	server_v1.test();
+//	client_v1.test_v2(); // error
 
 //  -----------------------------
 
-	Server_v2 server_v2;
+	client_v1.test();
 
 //  -----------------------------
 
-//	server_v2.test_v1(); // error
-
-//	server_v2.test_v2(); // error
+	Client_v2 client_v2;
 
 //  -----------------------------
 
-	server_v2.test();
+//	client_v2.test_v1(); // error
+
+//	client_v2.test_v2(); // error
+
+//  -----------------------------
+
+	client_v2.test();
 }
 
 ////////////////////////////////////////

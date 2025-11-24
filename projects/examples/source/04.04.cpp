@@ -5,11 +5,12 @@
 #include <cstddef>
 
 ////////////////////////////////////////////////////////
+
 //!!!дублирование реализации при вызове для различных S1 и S2--> много кода
 //лучше массивы по указателю передать и еще передать размеры 
 template 
 < 
-	typename T, std::size_t S1, std::size_t S2 
+	typename T, std::size_t S1, std::size_t S2
 > 
 auto max(T const (&array_1)[S1], T const (&array_2)[S2])
 {
@@ -29,7 +30,7 @@ auto max(T const (&array_1)[S1], T const (&array_2)[S2])
 int main()
 {
 	int array_1[5]{ 1, 2, 3, 4, 5 };
-		
+
 	int array_2[5]{ 1, 2, 3 };
 
 //  -----------------------------------------

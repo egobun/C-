@@ -16,7 +16,7 @@ template <            > void test_v1 < int > (int   ) { std::print("test_v1 (2)\
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-template < typename T1, typename T2 > void test_v2()
+template < typename T1, typename T2 > void test_v2(T1, T2)
 {
 	std::print("test_v2 (1)\n");
 }
@@ -25,9 +25,17 @@ template < typename T1, typename T2 > void test_v2()
 
 //!!! частичные специализации запрещены для функций
 // template < typename T > void test_v2 < T, double > () // error
+
 // {
 //     std::print("test_v2 (2)\n");
 // }
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+template < typename T > void test_v2(T, double)
+{
+	std::print("test_v2 (3)\n");
+}
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,11 +53,11 @@ int main()
 
 	test_v1 < double > (1.0);//(7)
 
-//  ------------------------------------
+//  -------------------------
 
-	test_v2 < int, int    > ();
+	test_v2(1, 2  );
 
-//	test_v2 < int, double > (); // error
+	test_v2(1, 2.0);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
