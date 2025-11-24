@@ -15,7 +15,8 @@ using namespace std::literals;
 class Entity_v1
 {
 public :
-	
+	//!!!это не копирующий конструктор, это пользовательский конструктор	
+
 	Entity_v1(std::string const & string) : m_string(string) 
 	{
 		std::print("Entity_v1::Entity_v1 (1)\n");
@@ -29,7 +30,7 @@ public :
 	}
 
 //  -------------------------------------------------------------------
-	
+	//!!!А вот это уже  копирующий и перемещающий конструкторы
 	Entity_v1(Entity_v1 const & other) : m_string(other.m_string) 
 	{
 		std::print("Entity_v1::Entity_v1 (3)\n");

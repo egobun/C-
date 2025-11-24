@@ -33,20 +33,22 @@ public :
 		std::cout << "Vector:: Vector (2)\n";
 
 		m_array = m_size ? new int[m_size]{} : nullptr;
+		m_capacity = ;
 
 		std::ranges::copy(list, m_array);
 	}
 
 //  --------------------------------------------------------------------------------
 
-	Vector(Vector const & other) : m_size(other.m_size)
+	Vector(Vector const & other) : m_size(other.m_size) , m_capacity(other.m_capacity)
 	{
 		// std::print("Vector:: Vector (3)\n");
 		std::cout << "Vector:: Vector (3)\n";
 
-		m_array = m_size ? new int[m_size]{} : nullptr;
+		m_array = m_capacity? new int[m_capacity]{} : nullptr;
 
 		std::ranges::copy(other.m_array, other.m_array + other.m_size, m_array);
+		
 	}
 
 //  --------------------------------------------------------------------------------
@@ -55,7 +57,8 @@ public :
 	:
 		m_array(std::exchange(other.m_array, nullptr)),
 
-		m_size (std::exchange(other.m_size,  0      ))
+		m_size (std::exchange(other.m_size,  0      )),
+		m_capacity (std::exchange(other.m_capacity,  0      ))
 	{
 		// std::print("Vector:: Vector (4)\n");
 		std::cout << "Vector:: Vector (4)\n";
@@ -151,6 +154,8 @@ public :
 		std::swap(m_array, other.m_array); //!!!не глубокое копирование, а просто перемещение указателей
 
 		std::swap(m_size,  other.m_size );
+
+		std::swap(m_capacity,  other.m_capacity );
 	}
 
 	std::size_t capacity() const
@@ -165,23 +170,24 @@ public :
 
 	bool empty() const
 	{
-		if(m_size == 0) return 1; else return 0;
+		return m_size == 0;
 	}
 
 	void clear()
 	{
 		m_size = 0;
-		for(int i = 0; i < m_capacity; i++)
-		{
-			m_array[i] = 0;
-		}
 	}
 
 	void push_back(int value)
 	{
 		if(m_capacity == m_size){
-			int* new_array = new int[m_capacity*2];
-			m_capacity = m_capacity * 2;
+			if(m_capacity == 0){
+				m_capacity = 1;
+			} else {
+				m_capacity = m_capacity * 2;
+			}
+			int* new_array = new int[m_capacity];
+			
 
 			std::ranges::copy(m_array, m_array + m_size, new_array);
 			delete[] m_array;

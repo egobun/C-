@@ -26,6 +26,7 @@ auto const & make_entity_v4() { static Entity const entity; return entity; }
 
 auto make_typename_v1(auto entity) 
 {
+	//!!!при копировании теряется ссылочность и константность
 	return boost::typeindex::type_id_with_cvr < decltype(entity) > ().pretty_name();
 }
 
@@ -33,6 +34,7 @@ auto make_typename_v1(auto entity)
 
 auto make_typename_v2(auto & entity) 
 {
+	//!!!тут не теряем тип
 	return boost::typeindex::type_id_with_cvr < decltype(entity) > ().pretty_name();
 }
 
@@ -64,7 +66,7 @@ int main()
 
 //  ------------------------------------------------------------------------
 
-//	assert(make_typename_v2(make_entity_v1()) == "Entity&"       ); // error
+//	assert(make_typename_v2(make_entity_v1()) == "Entity&"       ); // error //rvalue не может принять
 
 	assert(make_typename_v2(make_entity_v2()) == "Entity const&" );
 

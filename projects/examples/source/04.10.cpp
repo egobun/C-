@@ -15,7 +15,7 @@ public :
 };
 
 //////////////////////////////////////////////////
-
+//!!!частичная специализация
 template < typename T > class Entity < T, int >
 {
 public :
@@ -27,7 +27,7 @@ public :
 };
 
 //////////////////////////////////////////////////
-
+//!!!частичная специализация - ожидаются одинаковые типы
 template < typename T > class Entity < T, T >
 {
 public :
@@ -57,7 +57,7 @@ int main()
 	Entity < int,    double > ().test();
 
 	Entity < double, int    > ().test();
-
+//неопрделенность выбора спецализации <T,T> или <T,int>
 //	Entity < int,    int    > ().test(); // error
 
 	Entity < double, double > ().test();

@@ -9,11 +9,11 @@ struct Entity {};
 
 //////////////////////////////////////////////////////////////
 
-void test_v1(Entity       & ) { std::print("test_v1 (1)\n"); }
+void test_v1(Entity       & ) { std::print("test_v1 (1)\n"); } //!!!для полноты, не используется
 
-void test_v1(Entity const & ) { std::print("test_v1 (2)\n"); }
+void test_v1(Entity const & ) { std::print("test_v1 (2)\n"); } //!!!копирование
 
-void test_v1(Entity       &&) { std::print("test_v1 (3)\n"); }
+void test_v1(Entity       &&) { std::print("test_v1 (3)\n"); } //!!!перемещение
 
 //////////////////////////////////////////////////////////////
 
@@ -25,14 +25,16 @@ void test_v2(Entity const & entity) { test_v1(entity); }
 
 void test_v2(Entity && entity)
 { 
+	//!!!семантика перемещения не сохраняется (без move вызывается первая версия test_v1)
 	test_v1(std::move(entity));
 }
 
 //////////////////////////////////////////////////////////////
 
-template < typename E > void test_v3(E && entity) 
+template < typename E > void test_v3(E && entity) //!!!пробрасывающая ссылка(так как тип не контректный а выводимый компилятором)
 { 
-	test_v1(std::forward < E > (entity));
+	test_v1(std::forward < E > (entity)); //move - безусловное приведение к rvalue
+	//forward-условное приведение (может ничего не делать если уже rvalue передали)
 }
 
 //////////////////////////////////////////////////////////////

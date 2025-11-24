@@ -14,7 +14,7 @@ private :
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////
-
+//???тут ничего не понял
 template < typename T, template < typename U > typename C = std::vector > class Stack_v2
 {
 private :
@@ -44,7 +44,7 @@ int main()
 	Stack_v2 < int, std::deque         > stack_v2;
 
 //  -------------------------------------------------------
-
+	//!!!class template argument deduction
 	std::vector vector = { 1, 2, 3, 4, 5 };
 
 //  -------------------------------------------------------

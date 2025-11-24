@@ -37,6 +37,7 @@ template < typename T3, typename T1, typename T2 > T3 max_v4(T1 x, T2 y)
 
 template < typename T3 = double, typename T1, typename T2 > T3 max_v5(T1 x, T2 y)
 {
+	//!!!считается костылем
 	return x < y ? y : x;
 }
 
@@ -44,6 +45,7 @@ template < typename T3 = double, typename T1, typename T2 > T3 max_v5(T1 x, T2 y
 
 template < typename T1, typename T2 > std::common_type_t < T1, T2 > max_v6(T1 x, T2 y)
 {
+	//!!!вычисляет некий общий тип для  T1 и T2 (к примеру double,int --> double)
 	return x < y ? y : x;
 }
 
@@ -51,6 +53,7 @@ template < typename T1, typename T2 > std::common_type_t < T1, T2 > max_v6(T1 x,
 
 template < typename T1, typename T2 > auto max_v7(T1 x, T2 y)
 {
+	//!!!финальное решение
 	return x < y ? y : x;
 }
 
@@ -58,8 +61,13 @@ template < typename T1, typename T2 > auto max_v7(T1 x, T2 y)
 
 auto max_v8(auto x, auto y) // support : cppinsights.io
 {
+	//!!!obriviated function template (сокращенный шаблон функций)
+	//если в теле нигде не используется T
+	//компилятор по сути сделает решение v7
+	//decltype - чтобы узнать тип, если он потребуется в теле
+	//auto независимы, это два разных параметра шаблона, то есть x,y могут и будут при необходимости быть разными типами
 	return x < y ? y : x;
-}
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,10 +103,12 @@ int main()
 //  ---------------------------------------------------------------
 
 	assert(equal(max_v3 < int, double, double > (1, 2.0), 2));
+	//!!! явно указали тип входных и выходного значений
 
 //  ---------------------------------------------------------------
 
 	assert(equal(max_v4 < double > (1, 2.0), 2));
+	//!!! явно указали тип первого входного значения
 
 //  ---------------------------------------------------------------
 

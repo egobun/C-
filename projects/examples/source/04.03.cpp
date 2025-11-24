@@ -15,7 +15,7 @@ template <            > void test_v1 < int   > (int *) { std::print("test_v1 (3)
 template < typename T > void test_v2           (T    ) { std::print("test_v2 (1)\n"); }
 
 template <            > void test_v2 < int * > (int *) { std::print("test_v2 (2)\n"); } 
-
+//!!!полная специализация относится к ближайщему базову шаблону находящимся надо ней
 template < typename T > void test_v2           (T *  ) { std::print("test_v2 (3)\n"); }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -26,9 +26,9 @@ int main()
 
 //  ------------------
 	
-	test_v1(x);
+	test_v1(x); //"test_v1 (3)\n"
 
-	test_v2(x);
+	test_v2(x); //"test_v2 (2)\n"
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
