@@ -25,6 +25,13 @@ namespace library::detail
 
 /////////////////////////////////////////////////
 
+void test(library::detail::Entity)
+{
+    std::print("test\n");
+}
+
+/////////////////////////////////////////////////
+
 namespace library
 {
 	//!!! inline - мастер умолчательная версия, она вызовется при library::test()
@@ -51,16 +58,23 @@ namespace library
 
 int main()
 {
-	::library::detail::Entity entity;
+	library::detail::Entity entity;
 
 //  ---------------------------------------------
+<<<<<<< HEAD
 //!!! компилятоор видит что аргумент в определенном пространстве имен и поэтому 
 // пытается вызвать test из того же пространства имен и возникает двойственная реализация
 	test(entity);
+=======
+
+//	  test(entity); // error
+
+	::test(entity);
+>>>>>>> origin_mst
 
 //  ---------------------------------------------
 
-    namespace alias = ::library::detail;
+    namespace alias = library::detail;
 
 //  ---------------------------------------------
 

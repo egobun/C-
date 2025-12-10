@@ -60,6 +60,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(debug
 
+
 03.34
     # 01.02
     # 01.03
@@ -427,7 +428,6 @@ set(debug
 #     14.34
     # 14.36
     # 14.37
-
 )
 
 #############################################################################################
@@ -441,6 +441,7 @@ foreach(entry IN LISTS debug)
     # target_link_libraries  (${entry} PRIVATE ${Boost_LIBRARIES})
     
     # target_link_libraries  (${entry} PRIVATE TBB::tbb)
+
 
 endforeach()
 
