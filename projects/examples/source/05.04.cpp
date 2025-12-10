@@ -19,7 +19,7 @@ public :
 
     Entity * copy() const override 
     { 
-        return new Client(*this);
+        return new Client(*this); //?? где определение этого конструктора?
     }
 };
 

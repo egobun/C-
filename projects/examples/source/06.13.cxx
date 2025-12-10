@@ -27,7 +27,7 @@ export import library.submodule;
 import <print>;
 
 ///////////////////////////////////////////////////////////////////
-
+//!!! export дает возможность вызывать из образно main
 export namespace library
 {
 	void test_v1();
