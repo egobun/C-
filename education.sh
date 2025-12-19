@@ -82,6 +82,14 @@ g++ -c -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 ../source/06.13.cxx
 
 g++ -c -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 ../source/06.14.cxx
 
-g++    -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 $files -o 06.16
+###################################################################################################
+
+files="../source/06.02/main.cpp rational.o rational_h.o"
+
+g++ -c -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 ../source/06.02/rational.cxx
+
+g++ -c -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 ../source/06.02/rational_h.cxx
+
+g++    -std=c++23 -fmodules-ts -Wall -Wextra -Wpedantic -O0 $files -o main
 
 ###################################################################################################

@@ -1,81 +1,168 @@
+// ////////////////////////////////////////////////////
+
+// #include <cassert>
+
+// ////////////////////////////////////////////////////
+
+// struct Entity
+// {
+//     int x = 0, y = 0;
+// };
+
+// ////////////////////////////////////////////////////
+// //!!!Федор Пикус - книга по паттернам 
+// //!!! порождающие, поведенческий, .. паттерны
+
+// class Builder
+// {
+// public :
+
+//     virtual ~Builder() = default;
+
+// //  -------------------------------
+
+//     auto make_entity()
+//     {
+//         m_entity = new Entity;
+
+//         set_x();
+
+//         set_y();
+
+//         return m_entity;
+//     }
+
+// //  -------------------------------
+
+//     virtual void set_x() const = 0;
+
+//     virtual void set_y() const = 0;
+
+// protected :
+
+//     Entity * m_entity = nullptr;
+// };
+
+// ////////////////////////////////////////////////////
+
+// class Builder_Client : public Builder
+// {
+// public :
+
+//     void set_x() const override { m_entity->x = 1; }
+
+//     void set_y() const override { m_entity->y = 1; }
+// };
+
+// ////////////////////////////////////////////////////
+
+// class Builder_Server : public Builder
+// {
+// public :
+
+//     void set_x() const override { m_entity->x = 1; }
+
+//     void set_y() const override { m_entity->y = 1; }
+// };
+
+// ////////////////////////////////////////////////////
+
+// int main()
+// {
+//     Builder * builder = new Builder_Client;
+
+// //  ---------------------------------------
+
+//     delete builder->make_entity();
+    
+//     //!!! delete пользователь делает самостоятельно - это недостаток
+//     // решается интелектуальными указателями
+//     delete builder;
+
+
+// }
+
 ////////////////////////////////////////////////////
 
-#include <cassert>
 
-////////////////////////////////////////////////////
+// Реализуйте такую разновидность паттерна Builder, которая позволяет выполнять поэтапное создание состав-
+// ного объекта следующим образом: auto person = builder.name("Ivan").age(25).grade(10).get(), где
+// person является экземпляром класса Person, а builder является экземпляром класса Builder. Реализуйте
+// класс Person для представления составного объекта. Реализуйте класс Builder для представления процесса
+// создания составного объекта. Реализуйте в классе Builder конструктор по умолчанию для создания состав-
+// ного объекта в начальном состоянии. Реализуйте в классе Builder публичные функции-члены для поэтапного
+// создания составного объекта и публичную функцию-член get для получения созданного составного объекта.
 
-struct Entity
+#include <iostream>
+#include <ostream>
+
+class Person
 {
-    int x = 0, y = 0;
-};
+public:
+    Person()
+    {
+        name = "";
+        age = 0;
+        grade = 0;
+    }
 
-////////////////////////////////////////////////////
-//!!!Федор Пикус - книга по паттернам 
-//!!! порождающие, поведенческий, .. паттерны
+    std::string name;
+    int age;
+    int grade;
+
+    friend auto & operator << (std::ostream & stream, Person const & person)
+    {
+        return stream << 
+            "name  = " << person.name << std::endl <<
+            "age  = " << person.age << std::endl <<
+            "grade  = " << person.grade << std::endl;
+    }
+};
 
 class Builder
 {
-public :
-
-    virtual ~Builder() = default;
-
-//  -------------------------------
-
-    auto make_entity()
+    
+public:
+    Builder()
     {
-        m_entity = new Entity;
-
-        set_x();
-
-        set_y();
-
-        return m_entity;
+        person = new Person;
     }
 
-//  -------------------------------
+    ~Builder() = default;
 
-    virtual void set_x() const = 0;
+    auto name(std::string name)
+    {
+        person->name = name;
+        return *this;
+    }
 
-    virtual void set_y() const = 0;
+    auto age(int age)
+    {
+        person->age = age;
+        return *this;
+    }
 
-protected :
+    auto grade (int grade)
+    {
+        person->grade = grade;
+        return *this;
+    }
 
-    Entity * m_entity = nullptr;
+    auto get() const
+    {
+        return person;
+    }
+
+protected:
+    Person * person = nullptr;
 };
-
-////////////////////////////////////////////////////
-
-class Builder_Client : public Builder
-{
-public :
-
-    void set_x() const override { m_entity->x = 1; }
-
-    void set_y() const override { m_entity->y = 1; }
-};
-
-////////////////////////////////////////////////////
-
-class Builder_Server : public Builder
-{
-public :
-
-    void set_x() const override { m_entity->x = 1; }
-
-    void set_y() const override { m_entity->y = 1; }
-};
-
-////////////////////////////////////////////////////
 
 int main()
 {
-    Builder * builder = new Builder_Client;
+    Builder * builder = new Builder();
 
-//  ---------------------------------------
+    auto person = (*builder).name("Ivan").age(25).grade(10).get();
 
-    delete builder->make_entity();
-    
-    delete builder;
+    std::cout << *person <<std::endl;
+    return 0;
 }
-
-////////////////////////////////////////////////////
