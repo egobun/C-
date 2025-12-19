@@ -3,6 +3,8 @@
 #include <vector>
 
 ///////////////////////////////////////////////////////////
+//!!! паттерн Prototype используется когда операция создания объекта долгая,
+// а вот операция копирования объекта значительно менее затратная
 
 class Entity
 {
@@ -21,15 +23,10 @@ class Client : public Entity
 {
 public :
 
-<<<<<<< HEAD
     Entity * copy() const override 
     { 
         return new Client(*this); //?? где определение этого конструктора?
-=======
-    Entity * copy() const override
-    {
-        return new Client(*this);
->>>>>>> origin_mst
+
     }
 };
 

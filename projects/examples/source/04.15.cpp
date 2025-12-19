@@ -5,14 +5,16 @@
 
 ////////////////////////////////////////////////////////////////////////////
 
-template < typename T, std::size_t S1, std::size_t S2 > struct Array 
+template < typename T, std::size_t S1, std::size_t S2 >
+struct Array 
 {
     T array[S1][S2]{};
 };
 
 ////////////////////////////////////////////////////////////////////////////
 //!!!создаем псевдоним array_t, который использует шаблон структуры Array, но с параметрами T,S,S
-template < typename T, std::size_t S > using array_t = Array < T, S, S > ;
+template < typename T, std::size_t S >
+using array_t = Array < T, S, S > ;
 
 ////////////////////////////////////////////////////////////////////////////
 
