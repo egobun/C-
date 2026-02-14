@@ -1,7 +1,23 @@
 /////////////////////////////////////////////////////////////////////
 
+// chapter : Basics of Programming
+
+/////////////////////////////////////////////////////////////////////
+
+// section : Operators and Expressions
+
+/////////////////////////////////////////////////////////////////////
+
+// content : Iteration Statements
+//
+// content : Statement for
+//
+// content : Function std::size
+
+/////////////////////////////////////////////////////////////////////
+
+#include <initializer_list>
 #include <print>
-#include <vector>
 
 /////////////////////////////////////////////////////////////////////
 
@@ -14,11 +30,11 @@ int main()
 
 //  -----------------------------------------------------------------
 
-	std::vector < int > vector = { 1, 2, 3, 4, 5 };
+	std::initializer_list < int > list = { 1, 2, 3, 4, 5 };
 
 //  -----------------------------------------------------------------
 
-//	for (auto i = 0; i < std::size(vector); ++i) // error
+//	for (auto i = 0; i < std::size(list); ++i) // error
 //	{
 //		std::print("main : i = {}\n", i);
 //	}

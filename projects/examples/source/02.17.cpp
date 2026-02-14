@@ -1,5 +1,33 @@
 /////////////////////////////////////////////////////////////
 
+// chapter : Basics of Programming
+
+/////////////////////////////////////////////////////////////
+
+// section : Operators and Expressions
+
+/////////////////////////////////////////////////////////////
+
+// content : Function std::print
+//
+// content : String Literals
+//
+// content : Null-Terminated Strings
+//
+// content : Stream std::cin
+//
+// content : Operator >>
+//
+// content : Selection Statements
+//
+// content : Statement if
+//
+// content : Scoped Variables
+//
+// content : Service Compiler Explorer
+
+/////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <print>
 

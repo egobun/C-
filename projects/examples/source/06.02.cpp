@@ -1,5 +1,47 @@
 ///////////////////////////////////////////////////////////////////
 
+// chapter : Projects and Libraries
+
+///////////////////////////////////////////////////////////////////
+
+// section : Translation Process
+
+///////////////////////////////////////////////////////////////////
+
+// content : Translation Process
+//
+// content : Preprocessing
+//
+// content : Translation Units
+//
+// content : Preprocessor Directives
+//
+// content : Using Libraries
+//
+// content : Directive #include
+//
+// content : Object and Function Macros
+//
+// content : Directives #define and #undef
+//
+// content : Operators \, ## and #
+//
+// content : Side Effects
+//
+// content : Runtime Assertions
+//
+// content : Macro assert
+//
+// content : Conditional Compilation
+//
+// content : Directives #if, #else and #endif
+//
+// content : Suppressing Compiler Warnings
+//
+// content : Directive #pragma
+
+///////////////////////////////////////////////////////////////////
+
 // support : g++ -std=с++23 -DNO_TRACE 06.02.cpp
 
 ///////////////////////////////////////////////////////////////////

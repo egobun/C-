@@ -1,80 +1,76 @@
-// ////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
-// #include <cassert>
-// #include <vector>
+// chapter : Generic Programming
 
-// ////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
-// template < typename T > struct Node 
-// { 
-// 	T x = T();
-	
-// 	Node * left = nullptr, * right = nullptr;
-// };
+// section : Function Templates
 
-// ////////////////////////////////////////////////////////////////
-// //???домашняя работа ->* - это оператор (разобрать пример в книге для обхода дерева)
-// auto visit(auto node, auto ... nodes)
-// {
-// 	return (node ->* ... ->* nodes); // support : cppinsights.io
-// }
+////////////////////////////////////////////////////////////////
 
-// ////////////////////////////////////////////////////////////////
+// content : Operator ->*
+//
+// content : Pointers to Data Members
 
-// int main()
-// {
-// 	std::vector < Node < int > > nodes(5);
+////////////////////////////////////////////////////////////////
 
-// //  ------------------------------------------------------
-
-// 	for (auto i = 0uz; i < std::size(nodes); ++i)
-// 	{
-// 		nodes[i].x = i + 1;
-// 	}
-
-// //  ------------------------------------------------------
-
-// 	Node < int > * node = nullptr;
-
-// //  ------------------------------------------------------
-
-// 	node 						   = &nodes.at(0);
-
-// 	node->left          		   = &nodes.at(1);
-
-// 	node->left->right       	   = &nodes.at(2);
-
-// 	node->left->right->left    	   = &nodes.at(3);
-
-// 	node->left->right->left->right = &nodes.at(4);
-
-// //  ------------------------------------------------------
-
-// 	auto  left = &Node < int > :: left;
-
-// 	auto right = &Node < int > ::right;
-
-// //  ------------------------------------------------------
-
-// 	assert(visit(node, left, right, left, right)->x == 5);
-// }
-
-// ////////////////////////////////////////////////////////////////
-
-
-#include <vector>
 #include <cassert>
+#include <vector>
 
-template <typename C, typename ...Ts> void push_back(C & container, Ts... xs)
+////////////////////////////////////////////////////////////////
+
+template < typename T > struct Node 
+{ 
+	T x = T();
+	
+	Node * left = nullptr, * right = nullptr;
+};
+
+////////////////////////////////////////////////////////////////
+
+auto traverse(auto node, auto ... nodes)
 {
-	(container.push_back(xs), ...) ;
+	return (node ->* ... ->* nodes); // support : cppinsights.io
 }
 
-int main(){
+////////////////////////////////////////////////////////////////
 
-	std::vector<int> vector;
-	push_back(vector, 1,2,3,5,10);
-	assert(std::size(vector) == 5);
+int main()
+{
+	std::vector < Node < int > > nodes(5);
 
-	return 0;
+//  ---------------------------------------------------------
+
+	for (auto i = 0uz; i < std::size(nodes); ++i)
+	{
+		nodes[i].x = i + 1;
+	}
+
+//  ---------------------------------------------------------
+
+	Node < int > * node = nullptr;
+
+//  ---------------------------------------------------------
+
+	node 						   = &nodes.at(0);
+
+	node->left          		   = &nodes.at(1);
+
+	node->left->right       	   = &nodes.at(2);
+
+	node->left->right->left    	   = &nodes.at(3);
+
+	node->left->right->left->right = &nodes.at(4);
+
+//  ---------------------------------------------------------
+
+	auto  left = &Node < int > :: left;
+
+	auto right = &Node < int > ::right;
+
+//  ---------------------------------------------------------
+
+	assert(traverse(node, left, right, left, right)->x == 5);
 }
+
+////////////////////////////////////////////////////////////////

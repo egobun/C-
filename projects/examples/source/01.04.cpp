@@ -1,5 +1,33 @@
 ////////////////////////////////////////////////////////
 
+// chapter : Introduction and Overview
+
+////////////////////////////////////////////////////////
+
+// section : Standard Library Overview
+
+////////////////////////////////////////////////////////
+
+// content : Standard Library Overview
+//
+// content : Using Libraries
+//
+// content : Directive #include
+//
+// content : Namespace std
+//
+// content : Declaration using
+//
+// content : Function main
+//
+// content : Naming Conventions
+//
+// content : Comments and Documentation
+//
+// content : Service Doxygen
+
+////////////////////////////////////////////////////////
+
 // support : www.doxygen.nl
 
 ////////////////////////////////////////////////////////
@@ -31,7 +59,7 @@ int main()
 	std::print("main : x = {}\n", x);
 
 //  ----------------------------------------------------
-	
+
 	assert(std::abs(std::sin(std::numbers::pi)) < 1e-6);
 
 //  ----------------------------------------------------
@@ -39,7 +67,7 @@ int main()
 	std::string string = "aaaaa";
 
 //  ----------------------------------------------------
-	
+
 	assert(string.append("bbbbb").substr(4, 2) == "ab");
 
 //  ----------------------------------------------------
@@ -47,12 +75,16 @@ int main()
 	std::vector < int > vector = { 1, 2, 3, 4, 5 };
 
 //  ----------------------------------------------------
-	
+
 	vector.push_back(1);
 
 //  ----------------------------------------------------
 
 	assert(std::size(vector) == 6 && vector.at(5) == 1);
+
+//  ----------------------------------------------------
+
+	return 0;
 }
 
 ////////////////////////////////////////////////////////

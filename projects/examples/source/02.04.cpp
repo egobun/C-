@@ -1,5 +1,29 @@
 ////////////////////////////////////////////////////////////
 
+// chapter : Basics of Programming
+
+////////////////////////////////////////////////////////////
+
+// section : Types and Variables
+
+////////////////////////////////////////////////////////////
+
+// content : Arithmetic Types
+//
+// content : Floating-Point Types and Literals
+//
+// content : Types float and double
+//
+// content : Literal Suffixes f and l
+//
+// content : Standard IEEE 754
+//
+// content : Sign, Mantissa and Exponent
+//
+// content : Precision Problem
+
+////////////////////////////////////////////////////////////
+
 #include <cassert>
 #include <limits>
 

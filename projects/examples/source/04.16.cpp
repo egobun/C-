@@ -1,5 +1,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
+// chapter : Generic Programming
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// section : Metaprogramming
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// content : Variable Templates
+//
+// content : Namespace std::numbers
+
+///////////////////////////////////////////////////////////////////////////////////////
+
 #include <cassert>
 #include <cmath>
 #include <numbers>
@@ -12,7 +26,7 @@ T pi = T(3.141'592'653'589'793'238'462'643'383'279'502'884l);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-template < typename T > auto calculate(T radius)
+template < typename T > auto area(T radius)
 {
 	return pi_v < T > * radius * radius;
 }
@@ -28,11 +42,11 @@ auto equal(double x, double y, double epsilon = 1e-6)
 
 int main()
 {
-	assert(calculate(1) == 3);
+	assert(area(1) == 3);
 
 //  ----------------------------------------------------------------
 	
-	assert(equal(calculate(1.0), pi_v < double > ));
+	assert(equal(area(1.0), pi_v < double > ));
 
 //  ----------------------------------------------------------------
 

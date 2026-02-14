@@ -1,5 +1,43 @@
 //////////////////////////////////////////////////////////////
 
+// chapter : Debugging and Profiling
+
+//////////////////////////////////////////////////////////////
+
+// section : Exception Handling
+
+//////////////////////////////////////////////////////////////
+
+// content : Exception Handling
+//
+// content : Zero-Overhead Principle
+//
+// content : Statement throw
+//
+// content : User-Defined Exceptions
+//
+// content : Base Class std::exception
+//
+// content : Attribute [[noreturn]]
+//
+// content : Stack Unwinding
+//
+// content : Statements try and catch
+//
+// content : Stream std::cerr
+//
+// content : Rethrowing Exceptions
+//
+// content : Exception std::runtime_error
+//
+// content : Catch-All Handlers
+//
+// content : Function std::current_exception
+//
+// content : Pointer std::exception_ptr
+
+//////////////////////////////////////////////////////////////
+
 #include <exception>
 #include <iostream>
 #include <print>
@@ -95,10 +133,18 @@ int main()
 	{
 		test_v3();
 	}
+	catch (std::runtime_error const & exception)
+	{
+		std::cerr << "main : " << exception.what() << '\n';
+	}
 	catch (std::exception const & exception)
 	{
 		std::cerr << "main : " << exception.what() << '\n';
 	}
+//	catch (std::runtime_error const & exception) // error
+//	{
+//		std::cerr << "main : " << exception.what() << '\n';
+//	}
 	catch (...)
 	{
 		std::cerr << "main : unknown exception\n";

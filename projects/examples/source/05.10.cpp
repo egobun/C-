@@ -1,7 +1,19 @@
 ////////////////////////////////////////////////////
 
-// #include <print>
-#include <iostream>
+// chapter : Software Design Patterns
+
+////////////////////////////////////////////////////
+
+// section : Constructional Patterns
+
+////////////////////////////////////////////////////
+
+// content : Pattern Decorator
+
+////////////////////////////////////////////////////
+
+#include <print>
+
 ////////////////////////////////////////////////////
 
 class Entity 
@@ -17,43 +29,48 @@ public :
 
 ////////////////////////////////////////////////////
 
-class Client : public virtual Entity 
+class Client : public Entity 
 { 
 public : 
     
     void test() const override 
     { 
-        std::cout << "Client::test\n" << std::endl;
+        std::print("Client::test\n");
     } 
 };
 
 ////////////////////////////////////////////////////
 
-class Server : public virtual Entity 
+class Server : public Entity 
 { 
 public : 
     
     void test() const override 
     { 
-        std::cout << "Server::test\n" << std::endl;
+        std::print("Server::test\n");
     } 
 };
 
 ////////////////////////////////////////////////////
 
-template < typename T >
-class Decorator : public virtual Entity, public T
+class Decorator : public Entity
 {
 public :
+
+    Decorator(Entity & entity) : m_entity(entity) {}
+
 //  ------------------------------------------------
 
     void test() const override
     { 
-        std::cout << "Decorator::test : " << std::endl;
+        std::print("Decorator::test : ");
         
-        T::test();
+        m_entity.test();
     }
 
+private :
+
+    Entity & m_entity;
 };
 
 ////////////////////////////////////////////////////
@@ -61,31 +78,18 @@ public :
 int main()
 {
     Entity * entity_1 = new Client;
-    entity_1->test();
 
-    Entity * entity_2 = new Decorator <Client>;
-    entity_2->test();
-
-    Entity * entity_3 = new Decorator <Server>;
-    entity_3->test();
-
-    Entity * entity_4 = new Decorator <Decorator<Server>>;
-    entity_4->test();
+    Entity * entity_2 = new Decorator(*entity_1);
 
 //  ---------------------------------------------
-    delete entity_1;
-     
-    delete entity_2;
 
-    delete entity_3;
+    entity_2->test();
+
+//  ---------------------------------------------
+
+    delete entity_2;
      
-    delete entity_4;
+    delete entity_1;
 }
 
 ////////////////////////////////////////////////////
-
-
-// Реализуйте такую разновидность паттерна Decorator, которая основана на шаблоне. Реализуйте шаблон про-
-// изводного класса Decorator, который является наследником интерфейса класса Entity и наследником реа-
-// лизации собственного параметра шаблона. Используйте класс Entity как виртуальный базовый класс, чтобы
-// предотвратить неоднозначности выбора. Устраните в классе Decorator конструктор и ссылку на класс Entity.

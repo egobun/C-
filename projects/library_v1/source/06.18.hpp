@@ -4,21 +4,21 @@
 
 ///////////////////////////////////
 
-// section : Project Structure
+// section : Additional Libraries
 
 ///////////////////////////////////
 
-// content : Function main
+// content : Static Libraries
 
 ///////////////////////////////////
 
-#include "06.09.hpp"
+#pragma once
 
 ///////////////////////////////////
 
-int main()
+namespace library
 {
-    Entity().test();
+	void test();
 }
 
 ///////////////////////////////////
